@@ -163,6 +163,10 @@ void(vector st) ZombieFireGrenade =
 {
 	local	entity missile, mpuff;
 	local	vector	org;
+	//z-aware fix
+	local vector distancedelta;
+	local vector nozdistancedelta;
+//	local float r;
 
 	sound (self, CHAN_WEAPON, "zombie/z_shot1.wav", 1, ATTN_NORM);
 
@@ -177,10 +181,30 @@ void(vector st) ZombieFireGrenade =
 // set missile speed	
 
 	makevectors (self.angles);
-
+/*
+// old aware code
 	missile.velocity = normalize(self.enemy.origin - org);
 	missile.velocity = missile.velocity * 600;
 	missile.velocity_z = 200;
+*/
+// new aware code
+	distancedelta = self.enemy.origin - org; //work out distance vector  
+	nozdistancedelta = distancedelta;  //copy to no height distance vector 
+	
+	nozdistancedelta_z = 0;  //remove height 
+	
+	missile.velocity = normalize(distancedelta); //set the velocity to the distance
+	missile.velocity = missile.velocity * 600;   //give it more power 
+	
+/*	r = random();
+	dprint ("random: ");
+	dprint (ftos(r));
+	dprint ("\n");
+	missile.velocity_z = missile.velocity_z + vlen(nozdistancedelta) * (0.5 + (0.1 * (1.0 + r))); // EER1
+*/	
+//	missile.velocity_z = missile.velocity_z + vlen(nozdistancedelta) * 0.7; // orig. from tutorial (too good for zombies)
+//	missile.velocity_z = missile.velocity_z + 175 + 50*random(); // from seven mod
+	missile.velocity_z = missile.velocity_z + 200 + 100*random(); // good
 
 	missile.avelocity = '3000 1000 2000';
 
@@ -507,6 +531,8 @@ void() monster_zombie =
 
 	if (self.spawnflags & SPAWN_CRUCIFIED)
 	{
+		self.takedamage = TRUE;        //ADDED THIS!!! // crucified zombie can be gibbed
+		self.inpain = 2;               //ADDED THIS!!!
 		self.movetype = MOVETYPE_NONE;
 		zombie_cruc1 ();
 	}

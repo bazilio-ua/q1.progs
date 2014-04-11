@@ -124,18 +124,19 @@ void() OgreFireGrenade =
 	missile.velocity = missile.velocity * 600;   //give it more power 
 
 	missile.velocity_z = missile.velocity_z + vlen(nozdistancedelta) * 0.7; //add extra height for extra distance
+//	missile.velocity_z = missile.velocity_z + 150 + vlen(nozdistancedelta)*0.22*(1 + (0.3*(random()))); // from seven mod
 // end new up-down aware code
-
+/*
 // new leading code
-// get the entities xy velocity
+	// get the entities xy velocity
 	move = self.enemy.velocity;
 	move_z = 0;
 
-	fly = vlen(self.enemy.origin - self.origin) / 1000; //orig. 400
+	fly = vlen(self.enemy.origin - self.origin) / 2800; //orig. 400
 
 	missile.velocity = missile.velocity + (fly * move);
 // end leading code
-
+*/
 	missile.avelocity = '300 300 300';
 
 	missile.angles = vectoangles(missile.velocity);
