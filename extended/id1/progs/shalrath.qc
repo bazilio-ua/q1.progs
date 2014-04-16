@@ -68,7 +68,32 @@ void() shal_attack5     =[      $attack5,       shal_attack6    ] {ai_face();};
 void() shal_attack6     =[      $attack6,       shal_attack7    ] {ai_face();};
 void() shal_attack7     =[      $attack7,       shal_attack8    ] {ai_face();};
 void() shal_attack8     =[      $attack8,       shal_attack9    ] {ai_face();};
-void() shal_attack9     =[      $attack9,       shal_attack10   ] {ShalMissile();};
+void() shal_attack9     =[      $attack9,       shal_attack10   ] 
+{ // Gave Shalrath a melee attack by Entar (EER1)
+local vector	delta;
+local float 	ldmg;
+
+	if (!self.enemy)
+		return;
+	ai_charge(0);
+
+	delta = self.enemy.origin - self.origin;
+
+	if (vlen(delta) > 100)
+	{
+		ShalMissile();
+		return;
+	}
+	if (!CanDamage (self.enemy, self))
+		return;
+
+	ldmg = (random() + random() + random()) * 20;
+	T_Damage (self.enemy, self, self, ldmg);
+	sound (self, CHAN_VOICE, "shalrath/attack2.wav", 1, ATTN_NORM);
+
+	SpawnMeatSpray (self.origin + v_forward*16, crandom() * 100 * v_right);
+	SpawnMeatSpray (self.origin + v_forward*16, crandom() * 100 * v_right);	
+};
 void() shal_attack10    =[      $attack10,      shal_attack11   ] {ai_face();};
 void() shal_attack11    =[      $attack11,      shal_run1   ] {};
 
