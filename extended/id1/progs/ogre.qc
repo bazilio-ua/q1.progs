@@ -131,7 +131,7 @@ void() OgreFireGrenade =
 	move = self.enemy.velocity;
 	move_z = 0;
 
-	fly = vlen(self.enemy.origin - self.origin) / 1200; //2800 (orig. 400)
+	fly = vlen(self.enemy.origin - self.origin) / 1600; //1200-2800 (orig. 400)
 
 	missile.velocity = missile.velocity + (fly * move);
 // end leading code by Entar
