@@ -114,7 +114,7 @@ void() OgreFireGrenade =
 	missile.velocity = missile.velocity * 600;
 	missile.velocity_z = 200;
 */
-// new up-down aware code 
+// new up-down aware code by DrLabman (EER1)
 	distancedelta = self.enemy.origin - self.origin; //work out distance vector  
 	nozdistancedelta = distancedelta; //copy to no height distance vector 
 
@@ -124,19 +124,18 @@ void() OgreFireGrenade =
 	missile.velocity = missile.velocity * 600;   //give it more power 
 
 	missile.velocity_z = missile.velocity_z + vlen(nozdistancedelta) * 0.7; //add extra height for extra distance
-//	missile.velocity_z = missile.velocity_z + 150 + vlen(nozdistancedelta)*0.22*(1 + (0.3*(random()))); // from seven mod
-// end new up-down aware code
-/*
-// new leading code
+// end new up-down aware code by DrLabman
+
+// new leading code by Entar (EER1)
 	// get the entities xy velocity
 	move = self.enemy.velocity;
 	move_z = 0;
 
-	fly = vlen(self.enemy.origin - self.origin) / 2800; //orig. 400
+	fly = vlen(self.enemy.origin - self.origin) / 1200; //2800 (orig. 400)
 
 	missile.velocity = missile.velocity + (fly * move);
-// end leading code
-*/
+// end leading code by Entar
+
 	missile.avelocity = '300 300 300';
 
 	missile.angles = vectoangles(missile.velocity);

@@ -112,7 +112,10 @@ void() door_fire =
 // play use key sound
 
 	if (self.items)
-		sound (self, CHAN_VOICE, self.noise4, 1, ATTN_NORM);
+// 1998-08-08 Door unlock sound fix by Nolan Pflug  start (EER1)
+//		sound (self, CHAN_VOICE, self.noise4, 1, ATTN_NORM);
+		sound (self, CHAN_ITEM, self.noise4, 1, ATTN_NORM);
+// 1998-08-08 Door unlock sound fix by Nolan Pflug  end
 
 	self.message = string_null;		// no more message
 	oself = self;
