@@ -9,8 +9,8 @@
 * player gulps bubbles when hurt in slime
 * door unlock sound fix by Nolan Pflug 
 * walkframe leak fix by FrikaC
-* corrected typos for "klill", "diconnect", "montser" and "allready"/"allways"
 * player drops backpack on suicide when dm/coop
 * no exclusive deathmessage for being killed by Chthon fix by Maddes
 * correct in liquids contents death messages fix
 * give shalrath a melee attack by Entar
+* corrected typos for "klill", "diconnect", "montser", "wheil" and "allready"/"allways"
