@@ -1236,11 +1236,11 @@ void(entity targ, entity attacker) ClientObituary =
 				{
 // Correct contents messages fix by EER1
 					if (targ.watertype == CONTENT_SLIME)
-						bprint (" discharges into the slime.\n");
+						bprint (" discharges into the slime\n");
 					else if (targ.watertype == CONTENT_LAVA)
-						bprint (" discharges into the lava.\n");
+						bprint (" discharges into the lava\n");
 					else
-						bprint (" discharges into the water.\n");
+						bprint (" discharges into the water\n");
 					return;
 				}
 				if (targ.weapon == IT_GRENADE_LAUNCHER)
