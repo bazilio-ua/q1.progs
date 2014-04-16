@@ -113,6 +113,8 @@ void(vector org, vector vec, float light) HIP_LaunchLaser =
    newmis.movetype = MOVETYPE_FLYMISSILE;
    newmis.solid = SOLID_BBOX;
    if (light)
+      newmis.effects = EF_BRIGHTLIGHT; // EF_DIMLIGHT (EER1)
+   else
       newmis.effects = EF_DIMLIGHT;
 
    setmodel (newmis, "progs/lasrspik.mdl");
@@ -1125,12 +1127,12 @@ void() W_FireGrenade =
 	makevectors (self.v_angle);
 
 	if (self.v_angle_x)
-		missile.velocity = v_forward*600 + v_up * 200 + crandom()*v_right*10 + crandom()*v_up*10;
+		missile.velocity = v_forward*600 + v_up * 300 /* 200 */ + crandom()*v_right*10 + crandom()*v_up*10;
 	else
 	{
 		missile.velocity = aim(self, 10000);
 		missile.velocity = missile.velocity * 600;
-		missile.velocity_z = 200;
+		missile.velocity_z = 300; // 200; // EER1 change this to keep balance with ogres/zombies new up-down aware
 	}
 
 	missile.avelocity = '300 300 300';
@@ -2205,36 +2207,47 @@ void() ImpulseCommands =
 {
 	if (self.impulse >= 1 && self.impulse <= 8)
 		W_ChangeWeapon ();
-
-   if (self.impulse >= 225 && self.impulse <= 226)
+	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
+	if (self.impulse >= 225 && self.impulse <= 226)
 		W_ChangeWeapon ();
-
+	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
 	if (self.impulse == 9)
 		CheatCommand ();
-   if (self.impulse == 10)
+	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
+	if (self.impulse == 10)
 		CycleWeaponCommand ();
+	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
 	if (self.impulse == 11)
 		ServerflagsCommand ();
+	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
 	if (self.impulse == 12)
 		CycleWeaponReverseCommand ();
+	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
 //JIM
 	if ( self.impulse == 200 )
 		WetsuitCheat();
 //MED
-   if ( self.impulse == 201 )
-      EmpathyShieldsCheat();
-   if ( self.impulse == 205 )
-      Genocide();
-   if ( self.impulse == 206 )
-      ToggleDump();
-   if ( self.impulse == 202 )
-      DumpEntities();
-   if ( self.impulse == 203 )
-      DumpLiveEntities();
-   if (self.impulse == 255)
+	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
+	if ( self.impulse == 201 )
+		EmpathyShieldsCheat();
+	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
+	if ( self.impulse == 205 )
+		Genocide();
+	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
+	if ( self.impulse == 206 )
+		ToggleDump();
+	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
+	if ( self.impulse == 202 )
+		DumpEntities();
+	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
+	if ( self.impulse == 203 )
+		DumpLiveEntities();
+	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
+	if (self.impulse == 255)
 		QuadCheat ();
-   if (dump_coord == 1)
-      DumpCoordinates();
+	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
+	if (dump_coord == 1)
+		DumpCoordinates();
 
 	self.impulse = 0;
 };
@@ -2251,7 +2264,8 @@ void() W_WeaponFrame =
 	if (time < self.attack_finished)
 		return;
 
-	ImpulseCommands ();
+	if (self.impulse)	// 1998-08-14 Constantly checking all impulses fix by Perged (EER1)
+		ImpulseCommands ();
 
 // check for attack
 	if (self.button0)
