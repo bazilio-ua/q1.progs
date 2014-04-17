@@ -1230,22 +1230,17 @@ void() ImpulseCommands =
 {
 	if (self.impulse >= 1 && self.impulse <= 8)
 		W_ChangeWeapon ();
-	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
-	if (self.impulse == 9)
+	else if (self.impulse == 9) // 1998-08-14 Constantly checking all impulses fix by Kryten  start (EER1)
 		CheatCommand ();
-	else	// 1998-08-14 Constantly checking all impulses fix by Kryten
-	if (self.impulse == 10)
+	else if (self.impulse == 10)
 		CycleWeaponCommand ();
-	else	// 1998-08-14 Constantly checking all impulses fix by Kryten
-	if (self.impulse == 11)
+	else if (self.impulse == 11)
 		ServerflagsCommand ();
-	else	// 1998-08-14 Constantly checking all impulses fix by Kryten
-	if (self.impulse == 12)
+	else if (self.impulse == 12)
 		CycleWeaponReverseCommand ();
-	else	// 1998-08-14 Constantly checking all impulses fix by Kryten
-	if (self.impulse == 255)
+	else if (self.impulse == 255) // 1998-08-14 Constantly checking all impulses fix by Kryten  end
 		QuadCheat ();
-		
+	
 	self.impulse = 0;
 };
 

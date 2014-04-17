@@ -2207,48 +2207,35 @@ void() ImpulseCommands =
 {
 	if (self.impulse >= 1 && self.impulse <= 8)
 		W_ChangeWeapon ();
-	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
-	if (self.impulse >= 225 && self.impulse <= 226)
+	else if (self.impulse >= 225 && self.impulse <= 226) // 1998-08-14 Constantly checking all impulses fix by Kryten  start (EER1)
 		W_ChangeWeapon ();
-	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
-	if (self.impulse == 9)
+	else if (self.impulse == 9)
 		CheatCommand ();
-	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
-	if (self.impulse == 10)
+	else if (self.impulse == 10)
 		CycleWeaponCommand ();
-	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
-	if (self.impulse == 11)
+	else if (self.impulse == 11)
 		ServerflagsCommand ();
-	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
-	if (self.impulse == 12)
+	else if (self.impulse == 12)
 		CycleWeaponReverseCommand ();
-	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
 //JIM
-	if ( self.impulse == 200 )
+	else if ( self.impulse == 200 )
 		WetsuitCheat();
 //MED
-	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
-	if ( self.impulse == 201 )
+	else if ( self.impulse == 201 )
 		EmpathyShieldsCheat();
-	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
-	if ( self.impulse == 205 )
+	else if ( self.impulse == 205 )
 		Genocide();
-	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
-	if ( self.impulse == 206 )
+	else if ( self.impulse == 206 )
 		ToggleDump();
-	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
-	if ( self.impulse == 202 )
+	else if ( self.impulse == 202 )
 		DumpEntities();
-	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
-	if ( self.impulse == 203 )
+	else if ( self.impulse == 203 )
 		DumpLiveEntities();
-	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
-	if (self.impulse == 255)
+	else if (self.impulse == 255)
 		QuadCheat ();
-	else	// 1998-08-14 Constantly checking all impulses fix by Kryten (EER1)
-	if (dump_coord == 1)
+	else if (dump_coord == 1) // 1998-08-14 Constantly checking all impulses fix by Kryten  end
 		DumpCoordinates();
-
+	
 	self.impulse = 0;
 };
 
