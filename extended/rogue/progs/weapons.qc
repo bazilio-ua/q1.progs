@@ -588,12 +588,12 @@ void() W_FireGrenade =
 	makevectors (self.v_angle);
 
 	if (self.v_angle_x)
-		missile.velocity = v_forward*600 + v_up * 200 + crandom()*v_right*10 + crandom()*v_up*10;
+		missile.velocity = v_forward*600 + v_up * 300 /* 200 */ + crandom()*v_right*10 + crandom()*v_up*10;
 	else
 	{
 		missile.velocity = aim(self, 10000);
 		missile.velocity = missile.velocity * 600;
-		missile.velocity_z = 200;
+		missile.velocity_z = 300; // 200; // EER1 change this to keep balance with ogres/zombies new up-down aware
 	}
 
 	missile.avelocity = '300 300 300';
@@ -838,7 +838,8 @@ void() W_SetCurrentAmmo =
 		self.items2 = self.items2 | IT2_MULTI_ROCKETS;
 	}
 	else if (self.weapon == IT_MULTI_ROCKET)
-	{			
+	{
+			
 		self.currentammo = self.ammo_multi_rockets;
 		self.weaponmodel = "progs/v_multi2.mdl";
 		self.weaponframe = 0;
@@ -891,7 +892,8 @@ void() W_SetCurrentAmmo =
 		self.currentammo = 0;
 		self.weaponmodel = "";
 		self.weaponframe = 0;
-	}		
+	}
+		
 	UpdateAmmoCounts(self);
 };
 
@@ -1239,7 +1241,8 @@ void() W_ChangeWeapon =
 		sprint (self, "not enough ammo.\n");
 		return;
 	}
-	
+	
+
 	if (self.weapon != fl)
 	{
 		if (self.weapon == IT_LAVA_NAILGUN || 
@@ -1310,7 +1313,8 @@ void() CheatCommand =
 		IT_SUPER_NAILGUN |
 		IT_GRENADE_LAUNCHER |
 		IT_ROCKET_LAUNCHER |
-		IT_LAVA_NAILGUN | 
+
+		IT_LAVA_NAILGUN | 
 		IT_LAVA_SUPER_NAILGUN | 
 		IT_MULTI_GRENADE |
 		IT_MULTI_ROCKET | 

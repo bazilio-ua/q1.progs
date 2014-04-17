@@ -95,6 +95,11 @@ void() MultiGrenadeExplode;
 void() OgreFireGrenade =
 {
 	local	entity missile, mpuff;
+	//z-aware fix
+	local vector distancedelta; 
+	local vector nozdistancedelta; 
+	local vector move;
+	local float	fly;
 	
 	self.effects = self.effects | EF_MUZZLEFLASH;
 
@@ -109,10 +114,36 @@ void() OgreFireGrenade =
 // set missile speed	
 
 	makevectors (self.angles);
+/*
+// old aware code
 	missile.velocity = normalize(self.enemy.origin - self.origin);
 	missile.velocity = missile.velocity * 600;
 	missile.velocity_z = 200;
+*/
+// new up-down aware code by DrLabman (EER1)
+	distancedelta = self.enemy.origin - self.origin; //work out distance vector  
+	nozdistancedelta = distancedelta; //copy to no height distance vector 
+
+	nozdistancedelta_z = 0;  //remove height 
+
+	missile.velocity = normalize(distancedelta); //set the velocity to the distance
+	missile.velocity = missile.velocity * 600;   //give it more power 
+
+	missile.velocity_z = missile.velocity_z + vlen(nozdistancedelta) * 0.7; //add extra height for extra distance
+// end new up-down aware code by DrLabman
+
+// new leading code by Entar (EER1)
+	// get the entities xy velocity
+	move = self.enemy.velocity;
+	move_z = 0;
+
+	fly = vlen(self.enemy.origin - self.origin) / 1600; //1200-2800 (orig. 400)
+
+	missile.velocity = missile.velocity + (fly * move);
+// end leading code by Entar
+
 	missile.avelocity = '300 300 300';
+
 	missile.angles = vectoangles(missile.velocity);
 	
 // set missile duration

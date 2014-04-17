@@ -1514,9 +1514,15 @@ void(entity targ, entity attacker) ClientObituary =
 				attacker.frags = attacker.frags - 1;
 				bprint (targ.netname);
 				
-				if (targ.weapon == 64 && targ.waterlevel > 1)
+				if (targ.weapon == IT_LIGHTNING && targ.waterlevel > 1)
 				{
-					bprint (" discharges into the water.\n");
+// Correct contents messages fix by EER1
+					if (targ.watertype == CONTENT_SLIME)
+						bprint (" discharges into the slime\n");
+					else if (targ.watertype == CONTENT_LAVA)
+						bprint (" discharges into the lava\n");
+					else
+						bprint (" discharges into the water\n");
 					return;
 				}
 				if (targ.weapon == IT_GRENADE_LAUNCHER)
@@ -1654,7 +1660,7 @@ void(entity targ, entity attacker) ClientObituary =
 			targ.frags = targ.frags - 1;
 			bprint (targ.netname);
 
-			// killed by a montser?
+			// killed by a monster?
 			if (attacker.flags & FL_MONSTER)
 			{
 				if (attacker.classname == "monster_army")
@@ -1691,6 +1697,10 @@ void(entity targ, entity attacker) ClientObituary =
 					bprint (" was scragged by a Scrag\n");
 				if (attacker.classname == "monster_zombie")
 					bprint (" joins the Zombies\n");
+// 1998-09-16 No exclusive deathmessage for being killed by Chthon fix by Maddes  start (EER1)
+				if (attacker.classname == "monster_boss")
+					bprint (" became one with Chthon\n");
+// 1998-09-16 No exclusive deathmessage for being killed by Chthon fix by Maddes  end
 
 				if (attacker.classname == "monster_eel")
 					bprint (" was electrified by an Eel\n");

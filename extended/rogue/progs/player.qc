@@ -125,13 +125,19 @@ void()	player_run =[	$rockrun1,	player_run	]
 
 	if (self.weapon == IT_AXE)
 	{
-		if (self.walkframe == 6)
+// 1999-09-04 Walkframe leak fix by FrikaC  start (EER1)
+//		if (self.walkframe == 6)
+		if (self.walkframe >= 6)
+// 1999-09-04 Walkframe leak fix by FrikaC  end
 			self.walkframe = 0;
 		self.frame = $axrun1 + self.walkframe;
 	}
 	else
 	{
-		if (self.walkframe == 6)
+// 1999-09-04 Walkframe leak fix by FrikaC  start (EER1)
+//		if (self.walkframe == 6)
+		if (self.walkframe >= 6)
+// 1999-09-04 Walkframe leak fix by FrikaC  end
 			self.walkframe = 0;
 		self.frame = self.frame + self.walkframe;
 	}
@@ -355,6 +361,11 @@ local float		rs;
 	if (self.watertype == CONTENT_SLIME)
 	{
 // FIX ME	put in some steam here
+// 1998-08-10 Player gulps bubbles when hurt in slime by Maddes  start (EER1)
+		if (self.waterlevel == 3)
+			DeathBubbles(1);
+// 1998-08-10 Player gulps bubbles when hurt in slime by Maddes  end
+
 		if (random() > 0.5)
 			sound (self, CHAN_VOICE, "player/lburn1.wav", 1, ATTN_NORM);
 		else
@@ -481,7 +492,7 @@ local entity	bubble_spawner;
 	bubble_spawner.air_finished = 0;
 	bubble_spawner.owner = self;
 	bubble_spawner.bubble_count = num_bubbles;
-	return;
+//	return;	// 1998-08-14 unnecessary by Maddes (EER1)
 };
 
 
@@ -684,8 +695,8 @@ void() PlayerDie =
 };
 
 void() set_suicide_frame =
-{	// used by klill command and diconnect command
-//	if (self.model != "progs/player.mdl")
+{	// used by kill command and disconnect command
+//	if (self.model != "progs/player.mdl") // (EER1)
 //		return;	// already gibbed
 
 	if (self.model == "progs/h_player.mdl")
