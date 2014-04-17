@@ -4,7 +4,7 @@
 * crucified zombies is gibbable
 * don't count fishes twice
 * fishes is gibbable
-* teamplay 1 fix, now you can hurt yourself as stated in the manual
+* teamplay 1 fix, now you can hurt yourself as stated in the manual (???)
 * constantly checking all impulses fix by Perged
 * player gulps bubbles when hurt in slime
 * door unlock sound fix by Nolan Pflug 

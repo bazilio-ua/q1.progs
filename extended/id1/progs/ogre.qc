@@ -104,6 +104,8 @@ void() OgreFireGrenade =
 	missile.owner = self;
 	missile.movetype = MOVETYPE_BOUNCE;
 	missile.solid = SOLID_BBOX;
+//JIM
+	missile.classname = "grenade";
 		
 // set missile speed	
 
