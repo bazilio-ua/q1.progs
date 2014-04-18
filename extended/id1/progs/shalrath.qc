@@ -258,7 +258,7 @@ void() monster_shalrath =
 	self.th_pain = shalrath_pain;
 	self.th_missile = shal_attack1;
 
-// 1998-09-16 Shalrath spawn start function call fix by Maddes
+// 1998-09-16 Shalrath spawn start function call fix by Maddes (EER1)
 //	self.think = walkmonster_start;
 //	self.nextthink = time + 0.1 + random ()*0.1;	
 	walkmonster_start();

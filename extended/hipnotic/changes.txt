@@ -1,17 +1,19 @@
-* up-down aware (z-aware) code fix for ogre/zombie
-* leading code for ogre
-* grenade weapon velocity tuned to keep balance with ogres/zombies new up-down aware
-* crucified zombies is gibbable
-* don't count fishes twice (hipnotic already fixed)
-* fishes is gibbable (hipnotic already fixed)
-* teamplay 1 fix, now you can hurt yourself as stated in the manual (???)
-* constantly checking all impulses fix by Perged
-* player gulps bubbles when hurt in slime
-* door unlock sound fix by Nolan Pflug 
-* walkframe leak fix by FrikaC (hipnotic + mjolnir)
-* player drops backpack on suicide when dm/coop
-* no exclusive deathmessage for being killed by Chthon fix by Maddes
-* correct in liquids contents death messages fix
-* give shalrath a melee attack by Entar
-* corrected typos for "klill", "diconnect", "montser", "wheil", "chagnelevel", "usefull" and "allready"/"allways"
-* hipnotic laserspikes shine EF_DIMLIGHT and EF_BRIGHTLIGHT sometimes
+* Up-down aware (z-aware) code fix for ogres/zombies by DrLabman
+* Grenade weapon velocity tuned to keep balance with ogres/zombies new up-down aware
+* Leading code for ogres by Entar
+* Give shalrath a melee attack by Entar
+
+* Crucified zombies is gibbable
+* Gibbable fishes (hipnotic already fixed)
+* Don't count fishes twice (hipnotic already fixed)
+
+* Teamplay 1 fix, now you can hurt yourself as stated in the manual (???)
+* Constantly checking all impulses fix by Perged
+* Player gulps bubbles when hurt in slime
+* Door unlock sound fix by Nolan Pflug 
+* Walkframe leak fix by FrikaC (hipnotic + mjolnir)
+* Player drops backpack on suicide when dm/coop
+* No exclusive deathmessage for being killed by Chthon fix by Maddes
+* Correct in liquids contents death messages fix
+* Corrected typos for "klill", "diconnect", "montser", "wheil", "chagnelevel", "usefull" and "allready"/"allways"
+* Hipnotic laserspikes shine EF_DIMLIGHT and EF_BRIGHTLIGHT sometimes
