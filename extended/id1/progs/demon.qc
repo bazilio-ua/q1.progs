@@ -33,7 +33,9 @@ $frame attacka9 attacka10 attacka11 attacka12 attacka13 attacka14 attacka15
 
 void()	Demon_JumpTouch;
 
-void()	demon1_stand1	=[	$stand1,	demon1_stand2	] {ai_stand();};
+void()	demon1_stand1	=[	$stand1,	demon1_stand2	] {
+self.angles_x = 0;
+ai_stand();};
 void()	demon1_stand2	=[	$stand2,	demon1_stand3	] {ai_stand();};
 void()	demon1_stand3	=[	$stand3,	demon1_stand4	] {ai_stand();};
 void()	demon1_stand4	=[	$stand4,	demon1_stand5	] {ai_stand();};
@@ -48,6 +50,8 @@ void()	demon1_stand12	=[	$stand12,	demon1_stand13	] {ai_stand();};
 void()	demon1_stand13	=[	$stand13,	demon1_stand1	] {ai_stand();};
 
 void()	demon1_walk1	=[	$walk1,		demon1_walk2	] {
+self.angles_x = 0;
+
 if (random() < 0.2)
     sound (self, CHAN_VOICE, "demon/idle1.wav", 1, ATTN_IDLE);
 ai_walk(8);
@@ -61,6 +65,7 @@ void()	demon1_walk7	=[	$walk7,		demon1_walk8	] {ai_walk(10);};
 void()	demon1_walk8	=[	$walk8,		demon1_walk1	] {ai_walk(10);};
 
 void()	demon1_run1	=[	$run1,		demon1_run2	] {
+self.angles_x = 0;
 if (random() < 0.2)
     sound (self, CHAN_VOICE, "demon/idle1.wav", 1, ATTN_IDLE);
 ai_run(20);};
@@ -70,35 +75,55 @@ void()	demon1_run4	=[	$run4,		demon1_run5	] {ai_run(20);};
 void()	demon1_run5	=[	$run5,		demon1_run6	] {ai_run(15);};
 void()	demon1_run6	=[	$run6,		demon1_run1	] {ai_run(36);};
 
-void()	demon1_jump1	=[	$leap1,		demon1_jump2	] {ai_face();};
-void()	demon1_jump2	=[	$leap2,		demon1_jump3	] {ai_face();};
-void()	demon1_jump3	=[	$leap3,		demon1_jump4	] {ai_face();};
+void()	demon1_jump1	=[	$leap1,		demon1_jump2	] {ai_face();
+local vector dir;
+self.angles_x = 0;
+
+dir = normalize(self.enemy.origin + '0 0 16' - self.origin);
+dir_z = 0.5;
+self.velocity = (dir * 600);
+};
+void()	demon1_jump2	=[	$leap2,		demon1_jump3	] {
+ai_face();
+};
+void()	demon1_jump3	=[	$leap3,		demon1_jump4	] {
+ai_face();
+};
 void()	demon1_jump4	=[	$leap4,		demon1_jump5	]
-{
+{ // z-aware code by ezzetabi (EER1)
+local vector dir;
 	ai_face();
-	
+
+	setorigin(self, self.origin + '0 0 2');
 	self.touch = Demon_JumpTouch;
-	makevectors (self.angles);
-	self.origin_z = self.origin_z + 1;
-	self.velocity = v_forward * 600 + '0 0 250';
+	dir = normalize(self.enemy.origin + '0 0 8' - self.origin);
+	self.velocity = (dir * 600 + '0 0 250');
+	self.velocity_x = self.velocity_x - dir_x * 10;
+	self.velocity_y = self.velocity_y - dir_y * 10;
+	dir = vectoangles(self.velocity);
+	self.angles_x = dir_x;
 	if (self.flags & FL_ONGROUND)
 		self.flags = self.flags - FL_ONGROUND;
 };
-void()	demon1_jump5	=[	$leap5,		demon1_jump6	] {};
+void()	demon1_jump5	=[	$leap5,		demon1_jump6	] {
+    setorigin(self, self.origin + '0 0 5');
+};
 void()	demon1_jump6	=[	$leap6,		demon1_jump7	] {};
 void()	demon1_jump7	=[	$leap7,		demon1_jump8	] {};
 void()	demon1_jump8	=[ 	$leap8,		demon1_jump9	] {};
 void()	demon1_jump9	=[ 	$leap9,		demon1_jump10	] {};
 void()	demon1_jump10	=[ 	$leap10,	demon1_jump1	] {
-self.nextthink = time + 3;
-// if three seconds pass, assume demon is stuck and jump again
+// if one whole second pass, assume demon is stuck and jump again
+self.nextthink = time + 1;
 };
 
 void()	demon1_jump11	=[ 	$leap11,	demon1_jump12	] {};
 void()	demon1_jump12	=[ 	$leap12,	demon1_run1	] {};
 
 
-void()	demon1_atta1	=[	$attacka1,		demon1_atta2	] {ai_charge(4);};
+void()	demon1_atta1	=[	$attacka1,		demon1_atta2	] {
+self.angles_x = 0;
+ai_charge(4);};
 void()	demon1_atta2	=[	$attacka2,		demon1_atta3	] {ai_charge(0);};
 void()	demon1_atta3	=[	$attacka3,		demon1_atta4	] {ai_charge(0);};
 void()	demon1_atta4	=[	$attacka4,		demon1_atta5	] {ai_charge(1);};
@@ -114,7 +139,9 @@ void()	demon1_atta13	=[	$attacka13,		demon1_atta14] {ai_charge(8);};
 void()	demon1_atta14	=[	$attacka14,		demon1_atta15] {ai_charge(4);};
 void()	demon1_atta15	=[	$attacka15,		demon1_run1] {ai_charge(4);};
 
-void()	demon1_pain1	=[	$pain1,		demon1_pain2	] {};
+void()	demon1_pain1	=[	$pain1,		demon1_pain2	] {
+self.angles_x = 0;
+};
 void()	demon1_pain2	=[	$pain2,		demon1_pain3	] {};
 void()	demon1_pain3	=[	$pain3,		demon1_pain4	] {};
 void()	demon1_pain4	=[	$pain4,		demon1_pain5	] {};
@@ -249,17 +276,8 @@ float()	CheckDemonJump =
 {
 	local	vector	dist;
 	local	float	d;
-
-	if (self.origin_z + self.mins_z > self.enemy.origin_z + self.enemy.mins_z
-	+ 0.75 * self.enemy.size_z)
-		return FALSE;
-		
-	if (self.origin_z + self.maxs_z < self.enemy.origin_z + self.enemy.mins_z
-	+ 0.25 * self.enemy.size_z)
-		return FALSE;
 		
 	dist = self.enemy.origin - self.origin;
-	dist_z = 0;
 	
 	d = vlen(dist);
 	
@@ -272,6 +290,12 @@ float()	CheckDemonJump =
 			return FALSE;
 	}
 		
+	if (dist_z > 200) 
+	{
+		if (random() < 0.9)
+			return FALSE;
+	}
+
 	return TRUE;
 };
 
