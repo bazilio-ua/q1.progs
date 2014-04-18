@@ -1034,7 +1034,7 @@ void() TeamFlagTouch =
 		// flagbase entities does the scoring
 		bprint(other.netname);
 		bprint(" ГОТ the flag!\n");
-		if (CTF_FLAG_BONUS)
+//		if (CTF_FLAG_BONUS) // Result of comparison is constant -- commented out  
 			other.frags = other.frags + CTF_FLAG_BONUS;
 		//centerprint(other, "YOU GOT THE FLAG\n\nTAKE IT TO ENEMY BASE\n");
 		  centerprint(other, "ыоу гот тхе флаг\n\nтаке ит то енемы басе\n");

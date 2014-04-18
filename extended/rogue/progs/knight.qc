@@ -30,7 +30,8 @@ $frame painb10 painb11
 //frame attack1 attack2 attack3 attack4 attack5 attack6 attack7
 //frame attack8 attack9 attack10 attack11
 
-$frame attackb1 attackb1 attackb2 attackb3 attackb4 attackb5
+//$frame attackb1 attackb1 attackb2 attackb3 attackb4 attackb5
+$frame attackb1 attackb2 attackb3 attackb4 attackb5
 $frame attackb6 attackb7 attackb8 attackb9 attackb10
 
 $frame walk1 walk2 walk3 walk4 walk5 walk6 walk7 walk8 walk9
@@ -229,7 +230,8 @@ void() knight_die =
 	{
 		sound (self, CHAN_VOICE, "player/udeath.wav", 1, ATTN_NORM);
 		ThrowHead ("progs/h_knight.mdl", self.health);
-		if (self.spawnflags & 2) // statue
+	
+	if (self.spawnflags & 2) // statue
 		{
 			ThrowGib ( "progs/statgib1.mdl", self.health);
 			ThrowGib ( "progs/statgib2.mdl", self.health);
@@ -302,7 +304,8 @@ void() monster_knight =
 	}
 	precache_model ("progs/knight.mdl");
 	precache_model ("progs/h_knight.mdl");
-	if (self.spawnflags & 2) // statue
+
+	if (self.spawnflags & 2) // statue
 	{
 		precache_model ( "progs/statgib1.mdl");
 		precache_model ( "progs/statgib2.mdl");
@@ -370,5 +373,6 @@ void() monster_knight =
 		self.th_pain = knight_pain;
 		self.th_die = knight_die;
 		walkmonster_start ();
-	}
+	}
+
 };
