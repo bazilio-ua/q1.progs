@@ -6,7 +6,7 @@
 * Z-aware fiends code by ezzetabi
 * Crucified zombies is gibbable
 * Gibbable fishes by Maddes/Athos
-* Don't count fishes twice
+* Don't count fishes twice by Maddes
 * Shub kill count fix
 * Teamplay 1 fix, now you can hurt yourself as stated in the manual (???)
 * Constantly checking all impulses fix by Perged
