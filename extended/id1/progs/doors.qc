@@ -399,7 +399,7 @@ if two doors touch, they are assumed to be connected and operate as a unit.
 
 TOGGLE causes the door to wait in both the start and end states for a trigger event.
 
-START_OPEN causes the door to move to its destination when spawned, and operate in reverse.  It is used to temporarily or permanently close off an area when triggered (not usefull for touch or takedamage doors).
+START_OPEN causes the door to move to its destination when spawned, and operate in reverse.  It is used to temporarily or permanently close off an area when triggered (not useful for touch or takedamage doors).
 
 Key doors are always wait -1.
 

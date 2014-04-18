@@ -13,5 +13,5 @@
 * no exclusive deathmessage for being killed by Chthon fix by Maddes
 * correct in liquids contents death messages fix
 * give shalrath a melee attack by Entar
-* corrected typos for "klill", "diconnect", "montser", "wheil" and "allready"/"allways"
+* corrected typos for "klill", "diconnect", "montser", "wheil", "chagnelevel", "usefull" and "allready"/"allways"
 * hipnotic laserspikes shine EF_DIMLIGHT and EF_BRIGHTLIGHT sometimes

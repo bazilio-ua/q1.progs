@@ -153,7 +153,7 @@ void(entity attacker, float damage)	fish_pain =
 void() f_die =
 {
 // check for gib
-	if (self.health < -35)
+	if (self.health < -20)
 	{
 		sound (self, CHAN_VOICE, "player/udeath.wav", 1, ATTN_NORM);
 		ThrowHead ("progs/gib3.mdl", self.health);
