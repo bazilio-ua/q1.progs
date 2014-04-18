@@ -350,7 +350,7 @@ local float		rs;
 // FIX ME	put in some steam here
 // 1998-08-10 Player gulps bubbles when hurt in slime by Maddes  start (EER1)
 		if (self.waterlevel == 3)
-			DeathBubbles(1);
+			DeathBubbles(2);
 // 1998-08-10 Player gulps bubbles when hurt in slime by Maddes  end
 
 		if (random() > 0.5)
