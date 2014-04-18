@@ -7,7 +7,7 @@
 * Crucified zombies is gibbable
 * Gibbable fishes (hipnotic already fixed)
 * Don't count fishes twice (hipnotic already fixed)
-* Shub kill count fix
+* Shub kill count fix by Maddes
 * Teamplay 1 fix, now you can hurt yourself as stated in the manual (???)
 * Constantly checking all impulses fix by Perged
 * Player gulps bubbles when hurt in slime

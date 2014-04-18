@@ -7,7 +7,7 @@
 * Crucified zombies is gibbable
 * Gibbable fishes by Maddes/Athos
 * Don't count fishes twice (rogue already fixed)
-* Shub kill count fix
+* Shub kill count fix by Maddes
 * Teamplay 1 fix, now you can hurt yourself as stated in the manual (rogue already fixed)
 * Constantly checking all impulses fix (rogue already fixed)
 * Player gulps bubbles when hurt in slime
