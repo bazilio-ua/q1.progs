@@ -97,7 +97,7 @@ local vector dir;
 	setorigin(self, self.origin + '0 0 2');
 	self.touch = Demon_JumpTouch;
 	dir = normalize(self.enemy.origin + '0 0 8' - self.origin);
-	self.velocity = (dir * 600 + '0 0 250');
+	self.velocity = (dir * 630 + '0 0 150');
 	self.velocity_x = self.velocity_x - dir_x * 10;
 	self.velocity_y = self.velocity_y - dir_y * 10;
 	dir = vectoangles(self.velocity);
