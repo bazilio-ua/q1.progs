@@ -1697,10 +1697,9 @@ void(entity targ, entity attacker) ClientObituary =
 					bprint (" was scragged by a Scrag\n");
 				if (attacker.classname == "monster_zombie")
 					bprint (" joins the Zombies\n");
-// 1998-09-16 No exclusive deathmessage for being killed by Chthon fix by Maddes  start (EER1)
+// No exclusive deathmessage for being killed by Chthon fix by Maddes (EER1)
 				if (attacker.classname == "monster_boss")
 					bprint (" became one with Chthon\n");
-// 1998-09-16 No exclusive deathmessage for being killed by Chthon fix by Maddes  end
 
 				if (attacker.classname == "monster_eel")
 					bprint (" was electrified by an Eel\n");

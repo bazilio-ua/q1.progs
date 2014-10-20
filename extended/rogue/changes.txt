@@ -1,9 +1,9 @@
-* Up-down aware (z-aware) code fix for ogres/zombies by DrLabman
-* Grenade weapon velocity tuned to keep balance with ogres/zombies new up-down aware
+* Up-down aware (z-aware) code fix for ogres/zombies/mummyes by DrLabman
+* Grenade weapon velocity tuned to keep balance with ogres/zombies/mummyes new up-down aware
 * Leading code for ogres by Entar
 * Give shalrath a melee attack by Entar
 * Shalrath spawn start function call fix by Maddes
-* Z-aware fiends code by ezzetabi
+* Z-aware fiends code
 * Crucified zombies is gibbable
 * Gibbable fishes by Maddes/Athos
 * Don't count fishes twice (rogue already fixed)

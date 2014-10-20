@@ -3,13 +3,13 @@
 * Leading code for ogres by Entar
 * Give shalrath a melee attack by Entar
 * Shalrath spawn start function call fix by Maddes
-* Z-aware fiends code by ezzetabi
+* Z-aware fiends code
 * Crucified zombies is gibbable
 * Gibbable fishes by Maddes/Athos
 * Don't count fishes twice by Maddes
 * Shub kill count fix by Maddes
 * Teamplay 1 fix, now you can hurt yourself as stated in the manual (???)
-* Constantly checking all impulses fix by Perged
+* Constantly checking all impulses fix by Perged/Kryten
 * Player gulps bubbles when hurt in slime
 * Door unlock sound fix by Nolan Pflug 
 * Walkframe leak fix by FrikaC

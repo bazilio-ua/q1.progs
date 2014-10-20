@@ -95,11 +95,12 @@ void() MultiGrenadeExplode;
 void() OgreFireGrenade =
 {
 	local	entity missile, mpuff;
-	//z-aware fix
+// z-aware fix
 	local vector distancedelta; 
 	local vector nozdistancedelta; 
+// leading
 	local vector move;
-	local float	fly;
+	local float	fly, d;
 	
 	self.effects = self.effects | EF_MUZZLEFLASH;
 
@@ -121,26 +122,30 @@ void() OgreFireGrenade =
 	missile.velocity_z = 200;
 */
 // new up-down aware code by DrLabman (EER1)
-	distancedelta = self.enemy.origin - self.origin; //work out distance vector  
-	nozdistancedelta = distancedelta; //copy to no height distance vector 
+	distancedelta = self.enemy.origin - self.origin; // work out distance vector  
+	nozdistancedelta = distancedelta; // copy to no height distance vector 
+	nozdistancedelta_z = 0;  // remove height 
 
-	nozdistancedelta_z = 0;  //remove height 
+	missile.velocity = normalize(distancedelta); // set the velocity to the distance
+	missile.velocity = missile.velocity * 600;   // give it more power 
+	missile.velocity_z = missile.velocity_z + vlen(nozdistancedelta) * 0.7; // add extra height for extra distance
 
-	missile.velocity = normalize(distancedelta); //set the velocity to the distance
-	missile.velocity = missile.velocity * 600;   //give it more power 
-
-	missile.velocity_z = missile.velocity_z + vlen(nozdistancedelta) * 0.7; //add extra height for extra distance
-// end new up-down aware code by DrLabman
-
-// new leading code by Entar (EER1)
-	// get the entities xy velocity
-	move = self.enemy.velocity;
+// leading code by Entar (EER1)
+	move = self.enemy.velocity;	// get the entities xy velocity
 	move_z = 0;
 
-	fly = vlen(self.enemy.origin - self.origin) / 1600; //1200-2800 (orig. 400)
+	d = vlen(distancedelta); // EER1
+	
+	if (d < 300)
+		fly = d / 400; // orig
+	else if (d < 600)
+		fly = d / 800;
+	else if (d < 900)
+		fly = d / 1200;
+	else
+		fly = d / 1600;
 
 	missile.velocity = missile.velocity + (fly * move);
-// end leading code by Entar
 
 	missile.avelocity = '300 300 300';
 

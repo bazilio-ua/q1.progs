@@ -125,19 +125,17 @@ void()	player_run =[	$rockrun1,	player_run	]
 
 	if (self.weapon == IT_AXE)
 	{
-// 1999-09-04 Walkframe leak fix by FrikaC  start (EER1)
+// Walkframe leak fix by FrikaC (EER1)
 //		if (self.walkframe == 6)
 		if (self.walkframe >= 6)
-// 1999-09-04 Walkframe leak fix by FrikaC  end
 			self.walkframe = 0;
 		self.frame = $axrun1 + self.walkframe;
 	}
 	else
 	{
-// 1999-09-04 Walkframe leak fix by FrikaC  start (EER1)
+// Walkframe leak fix by FrikaC (EER1)
 //		if (self.walkframe == 6)
 		if (self.walkframe >= 6)
-// 1999-09-04 Walkframe leak fix by FrikaC  end
 			self.walkframe = 0;
 		self.frame = self.frame + self.walkframe;
 	}
@@ -361,10 +359,9 @@ local float		rs;
 	if (self.watertype == CONTENT_SLIME)
 	{
 // FIX ME	put in some steam here
-// 1998-08-10 Player gulps bubbles when hurt in slime by Maddes  start (EER1)
+// Player gulps bubbles when hurt in slime by Maddes (EER1)
 		if (self.waterlevel == 3)
 			DeathBubbles(2);
-// 1998-08-10 Player gulps bubbles when hurt in slime by Maddes  end
 
 		if (random() > 0.5)
 			sound (self, CHAN_VOICE, "player/lburn1.wav", 1, ATTN_NORM);
@@ -492,7 +489,7 @@ local entity	bubble_spawner;
 	bubble_spawner.air_finished = 0;
 	bubble_spawner.owner = self;
 	bubble_spawner.bubble_count = num_bubbles;
-//	return;	// 1998-08-14 unnecessary by Maddes (EER1)
+// unnecessary return fix by Maddes (EER1)
 };
 
 

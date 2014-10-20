@@ -161,12 +161,11 @@ void(entity targ, entity inflictor, entity attacker, float damage) T_Damage=
 	}
 
 // team play damage avoidance
-// 1998-07-29 Teamplay 1 fix by Maddes  start (EER1)
+// Teamplay 1 fix by Maddes (EER1)
 	if ( (teamplay == 1) && (targ.team > 0)&&(targ.team == attacker.team)
 	&& (targ != attacker)
 	&& (attacker.classname == "player")
 	&& (inflictor.classname !="door") )	// because squishing a teammate is still possible
-// 1998-07-29 Teamplay 1 fix by Maddes  end
 		return;
 		
 // do the damage

@@ -191,7 +191,7 @@ void() swimmonster_start_go =
 	}
 
 	self.takedamage = DAMAGE_AIM;
-//	total_monsters = total_monsters + 1;		// 1997-12-23 Fish fix by Maddes  don't count fishes twice (EER1)
+// don't count fishes twice, fish fix by Maddes (EER1)
 
 	self.ideal_yaw = self.angles * '0 1 0';
 	if (!self.yaw_speed)

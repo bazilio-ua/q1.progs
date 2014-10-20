@@ -587,13 +587,14 @@ void() W_FireGrenade =
 
 	makevectors (self.v_angle);
 
+// change from 200 to 270, to keep balance with ogres/zombies new up-down aware (EER1)
 	if (self.v_angle_x)
-		missile.velocity = v_forward*600 + v_up * 300 /* 200 */ + crandom()*v_right*10 + crandom()*v_up*10;
+		missile.velocity = v_forward*600 + v_up * 270 + crandom()*v_right*10 + crandom()*v_up*10; // was 200
 	else
 	{
 		missile.velocity = aim(self, 10000);
 		missile.velocity = missile.velocity * 600;
-		missile.velocity_z = 300; // 200; // EER1 change this to keep balance with ogres/zombies new up-down aware
+		missile.velocity_z = 270; // was 200
 	}
 
 	missile.avelocity = '300 300 300';

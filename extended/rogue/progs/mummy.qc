@@ -68,7 +68,8 @@ void() mummy_stand12   =[  $stand12,       mummy_stand13  ] {ai_stand();};
 void() mummy_stand13   =[  $stand13,       mummy_stand14  ] {ai_stand();};
 void() mummy_stand14   =[  $stand14,       mummy_stand15  ] {ai_stand();};
 void() mummy_stand15   =[  $stand15,       mummy_stand1   ] {ai_stand();};
-
+
+
 void() mummy_walk1     =[  $walk1,     mummy_walk2    ] {ai_walk(0);};
 void() mummy_walk2     =[  $walk2,     mummy_walk3    ] {ai_walk(3);};
 void() mummy_walk3     =[  $walk3,     mummy_walk4    ] {ai_walk(5);};
@@ -158,6 +159,9 @@ void(vector st) mummyFireGrenade =
 {
 	local   entity missile, mpuff;
 	local   vector  org;
+// z-aware fix
+	local vector distancedelta;
+	local vector nozdistancedelta;
 
 	sound (self, CHAN_WEAPON, "zombie/z_shot1.wav", 1, ATTN_NORM);
 
@@ -172,10 +176,20 @@ void(vector st) mummyFireGrenade =
 // set missile speed    
 
 	makevectors (self.angles);
-
+/*
+// old aware code
 	missile.velocity = normalize(self.enemy.origin - org);
 	missile.velocity = missile.velocity * 600;
 	missile.velocity_z = 200;
+*/
+// new up-down aware code by DrLabman (EER1)
+	distancedelta = self.enemy.origin - org; // work out distance vector  
+	nozdistancedelta = distancedelta;  // copy to no height distance vector 
+	nozdistancedelta_z = 0;  // remove height 
+	
+	missile.velocity = normalize(distancedelta); // set the velocity to the distance
+	missile.velocity = missile.velocity * 600;   // give it more power 
+	missile.velocity_z = missile.velocity_z + vlen(nozdistancedelta) * 0.7; // add extra height for extra distance (FIXME: this is too good for mummyes?)
 
 	missile.avelocity = '3000 1000 2000';
 

@@ -281,7 +281,8 @@ void() monster_boss =
 
 	total_monsters = total_monsters + 1;
 
-	self.flags = self.flags | FL_MONSTER;	// 1998-09-16 No exclusive deathmessage for being killed by Chthon fix by Maddes (EER1)
+// No exclusive deathmessage for being killed by Chthon fix by Maddes (EER1)
+	self.flags = self.flags | FL_MONSTER;
 
 	self.use = boss_awake;
 };

@@ -149,7 +149,7 @@ void(entity attacker, float damage)	fish_pain =
 	f_pain1 ();
 };
 
-// 1998-08-09 Gibbable fishes by Maddes/Athos  start (EER1)
+// Gibbable fishes by Maddes/Athos (EER1)
 void() f_die =
 {
 // check for gib
@@ -164,7 +164,7 @@ void() f_die =
 // regular death
 	f_death1 ();
 };
-// 1998-08-09 Gibbable fishes by Maddes/Athos  end
+
 
 /*QUAKED monster_fish (1 0 0) (-16 -16 -24) (16 16 24) Ambush
 */
@@ -192,10 +192,10 @@ void() monster_fish =
 	self.th_stand = f_stand1;
 	self.th_walk = f_walk1;
 	self.th_run = f_run1;
-// 1998-08-09 Gibbable fishes by Maddes/Athos  start (EER1)
+// Gibbable fishes by Maddes/Athos (EER1)
 //	self.th_die = f_death1;
 	self.th_die = f_die;
-// 1998-08-09 Gibbable fishes by Maddes/Athos  end
+
 	self.th_pain = fish_pain;
 	self.th_melee = f_attack1;
 	

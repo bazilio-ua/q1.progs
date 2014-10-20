@@ -68,8 +68,8 @@ void() shal_attack5     =[      $attack5,       shal_attack6    ] {ai_face();};
 void() shal_attack6     =[      $attack6,       shal_attack7    ] {ai_face();};
 void() shal_attack7     =[      $attack7,       shal_attack8    ] {ai_face();};
 void() shal_attack8     =[      $attack8,       shal_attack9    ] {ai_face();};
-void() shal_attack9     =[      $attack9,       shal_attack10   ] 
-{ // Gave Shalrath a melee attack by Entar (EER1)
+void() shal_attack9     =[      $attack9,       shal_attack10   ] { 
+// Gave Shalrath a melee attack by Entar (EER1)
 local vector	delta;
 local float 	ldmg;
 
@@ -258,9 +258,6 @@ void() monster_shalrath =
 	self.th_pain = shalrath_pain;
 	self.th_missile = shal_attack1;
 
-// 1998-09-16 Shalrath spawn start function call fix by Maddes (EER1)
-//	self.think = walkmonster_start;
-//	self.nextthink = time + 0.1 + random ()*0.1;
+// Shalrath spawn start function call fix by Maddes (EER1)
 	walkmonster_start();
-// 1998-09-16 Shalrath spawn start function call fix by Maddes
 };

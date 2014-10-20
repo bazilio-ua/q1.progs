@@ -1126,13 +1126,14 @@ void() W_FireGrenade =
 
 	makevectors (self.v_angle);
 
+	// change from 200 to 270, to keep balance with ogres/zombies new up-down aware (EER1)
 	if (self.v_angle_x)
-		missile.velocity = v_forward*600 + v_up * 300 /* 200 */ + crandom()*v_right*10 + crandom()*v_up*10;
+		missile.velocity = v_forward*600 + v_up * 270 + crandom()*v_right*10 + crandom()*v_up*10; // was 200
 	else
 	{
 		missile.velocity = aim(self, 10000);
 		missile.velocity = missile.velocity * 600;
-		missile.velocity_z = 300; // 200; // EER1 change this to keep balance with ogres/zombies new up-down aware
+		missile.velocity_z = 270; // was 200
 	}
 
 	missile.avelocity = '300 300 300';
@@ -2205,9 +2206,10 @@ ImpulseCommands
 */
 void() ImpulseCommands =
 {
+// Constantly checking all impulses fix by Kryten (EER1)
 	if (self.impulse >= 1 && self.impulse <= 8)
 		W_ChangeWeapon ();
-	else if (self.impulse >= 225 && self.impulse <= 226) // 1998-08-14 Constantly checking all impulses fix by Kryten  start (EER1)
+	else if (self.impulse >= 225 && self.impulse <= 226)
 		W_ChangeWeapon ();
 	else if (self.impulse == 9)
 		CheatCommand ();
@@ -2233,7 +2235,8 @@ void() ImpulseCommands =
 		DumpLiveEntities();
 	else if (self.impulse == 255)
 		QuadCheat ();
-	else if (dump_coord == 1) // 1998-08-14 Constantly checking all impulses fix by Kryten  end
+	
+	if (dump_coord == 1)
 		DumpCoordinates();
 	
 	self.impulse = 0;
@@ -2251,7 +2254,8 @@ void() W_WeaponFrame =
 	if (time < self.attack_finished)
 		return;
 
-	if (self.impulse)	// 1998-08-14 Constantly checking all impulses fix by Perged (EER1)
+// Constantly checking all impulses fix by Perged (EER1)
+	if (self.impulse)
 		ImpulseCommands ();
 
 // check for attack

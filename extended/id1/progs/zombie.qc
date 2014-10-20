@@ -163,7 +163,7 @@ void(vector st) ZombieFireGrenade =
 {
 	local	entity missile, mpuff;
 	local	vector	org;
-	//z-aware fix
+// z-aware fix
 	local vector distancedelta;
 	local vector nozdistancedelta;
 
@@ -177,8 +177,8 @@ void(vector st) ZombieFireGrenade =
 // calc org
 	org = self.origin + st_x * v_forward + st_y * v_right + (st_z - 24) * v_up;
 	
-// set missile speed	
-
+// set missile speed
+	
 	makevectors (self.angles);
 /*
 // old aware code
@@ -187,16 +187,13 @@ void(vector st) ZombieFireGrenade =
 	missile.velocity_z = 200;
 */
 // new up-down aware code by DrLabman (EER1)
-	distancedelta = self.enemy.origin - org; //work out distance vector  
-	nozdistancedelta = distancedelta;  //copy to no height distance vector 
+	distancedelta = self.enemy.origin - org; // work out distance vector  
+	nozdistancedelta = distancedelta;  // copy to no height distance vector 
+	nozdistancedelta_z = 0;  // remove height 
 	
-	nozdistancedelta_z = 0;  //remove height 
-	
-	missile.velocity = normalize(distancedelta); //set the velocity to the distance
-	missile.velocity = missile.velocity * 600;   //give it more power 
-	
-	missile.velocity_z = missile.velocity_z + vlen(nozdistancedelta) * 0.7; // orig. from tutorial (fixme: too good for zombies?)
-// end new up-down aware code by DrLabman
+	missile.velocity = normalize(distancedelta); // set the velocity to the distance
+	missile.velocity = missile.velocity * 600;   // give it more power 
+	missile.velocity_z = missile.velocity_z + vlen(nozdistancedelta) * 0.7; // add extra height for extra distance (FIXME: this is too good for zombies?)
 
 	missile.avelocity = '3000 1000 2000';
 
@@ -523,8 +520,10 @@ void() monster_zombie =
 
 	if (self.spawnflags & SPAWN_CRUCIFIED)
 	{
-		self.takedamage = TRUE;        //ADDED THIS!!! // crucified zombie can be gibbed (EER1)
-		self.inpain = 2;               //ADDED THIS!!!
+// Crucified zombie can be gibbed (EER1)
+		self.takedamage = TRUE;
+		self.inpain = 2;
+		
 		self.movetype = MOVETYPE_NONE;
 		zombie_cruc1 ();
 	}
